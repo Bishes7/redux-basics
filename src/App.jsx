@@ -1,13 +1,9 @@
-import { useState } from "react";
-
 import "./App.css";
 import Display from "./Display";
 import { useDispatch } from "react-redux";
-import { increase } from "./counterSlice";
+import { decrease, increase } from "./counterSlice";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   // Updating the state
   const dispatch = useDispatch();
 
@@ -15,12 +11,16 @@ function App() {
     dispatch(increase());
   };
 
+  const decr = () => {
+    dispatch(decrease());
+  };
+
   return (
     <>
-      <Display count={count} />
+      <Display />
       <div className="card">
         <button onClick={incr}>+</button>
-        <button onClick={() => setCount((count) => count - 1)}>-</button>
+        <button onClick={decr}>-</button>
       </div>
     </>
   );
